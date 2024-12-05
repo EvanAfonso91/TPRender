@@ -1,12 +1,16 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-
-app.get("/", (req, res) => {
-    res.send("Hello, Render!");
+app.get('/API/:code', (req, res) => {
+    res.setHeader('content-type', 'application/json');
+    const infos = {
+        name: 'Express',
+        email: 'afonso.evan@gmail.com',
+        code: req.params.code
+    };
+    res.end(JSON.stringify(infos));
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(3000, () => {
+    console.log('Server Started ...');
 });
